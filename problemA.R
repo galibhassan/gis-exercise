@@ -1,6 +1,3 @@
-# Clean workspace
-rm(list=ls())
-
 # Let's first write a function which will take
 # relative permitivity (E_r) and the angle of incidence (in degree) as input;
 # and returns the angle of transmission (in degree)
@@ -47,5 +44,4 @@ points(
   y = getTransmissionAngle(50, theta1_degree), 
   col="cornflowerblue"
 )
-
 
