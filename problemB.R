@@ -60,7 +60,7 @@ R_p_3 = getRp(
   getTransmissionAngle(3, theta1_radian)
 )
 
-plot(x = theta1_degree, y = R_s_3, col='darkblue', ylim = c(-.1,1), ylab = 'R_s and R_p', xlab = 'angle of incidence')
+plot(x = theta1_degree, y = R_s_3, col='darkblue', ylim = c(-.1,1), ylab = 'R_s and R_p', xlab = 'Angle of incidence')
 points(x = theta1_degree, y = R_p_3, col='red')
 
 # E_r = 10 --------------------------------------
@@ -96,5 +96,9 @@ R_p_50 = getRp(
 points(x = theta1_degree, y = R_s_50, col='orange')
 points(x = theta1_degree, y = R_p_50, col='magenta')
 
-
-
+legend(
+  1,1, 
+  legend = c("Rs3", "Rp3","Rs10", "Rp10","Rs50", "Rp50"),
+  col = c('darkblue', 'red', 'green', 'blue', 'orange', 'magenta'),
+  lty=1:1, cex=0.8
+)
