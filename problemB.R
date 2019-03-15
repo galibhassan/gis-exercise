@@ -32,42 +32,48 @@ getRp = function(E_r, aoi, aot){
 
 
 # To get transmission angles (aot's) from incidend angles (aoi's), we already have
-# written a formula in the "problemA.R" file. Let's use the source command to make that
-# functionality available. 
-source('C:/work/learning/gettingSmarter/personal/tanz-rem-sens-hw/problemA.R')
+# written a formula in the "problemA.R" file. But this time, we want to return the value
+# of the aot's in radian. So, let's modify it.
 
-# Now is the time to use it!
+getTransmissionAngle = function(E_r, inAngleD){
+  inAngleR = (pi/180)*inAngleD
+  transAngleR = asin(sin(inAngleR)/sqrt(E_r)) 
+  transAngleD = (180/pi)*transAngleR
+  return(transAngleR)
+}
+
 
 # make an array of incident angles from 0 to 80 degree
 theta1_degree = seq(from=0, to=80, by=.1)
+theta1_radian = theta1_degree*pi/180
 
 # E_r = 3 --------------------------------------
 R_s_3 = getRs(
   3, 
-  theta1_degree, 
-  getTransmissionAngle(3, theta1_degree)
+  theta1_radian, 
+  getTransmissionAngle(3, theta1_radian)
 )
 
 R_p_3 = getRp(
   3, 
-  theta1_degree, 
-  getTransmissionAngle(3, theta1_degree)
+  theta1_radian, 
+  getTransmissionAngle(3, theta1_radian)
 )
 
-plot(x = theta1_degree, y = R_s_3, col='darkblue')
+plot(x = theta1_degree, y = R_s_3, col='darkblue', ylim = c(-.1,1), ylab = 'R_s and R_p', xlab = 'angle of incidence')
 points(x = theta1_degree, y = R_p_3, col='red')
 
 # E_r = 10 --------------------------------------
 R_s_10 = getRs(
   10, 
-  theta1_degree,
-  getTransmissionAngle(10, theta1_degree)
+  theta1_radian,
+  getTransmissionAngle(10, theta1_radian)
 )
 
 R_p_10 = getRp(
   10,
-  theta1_degree,
-  getTransmissionAngle(10, theta1_degree)
+  theta1_radian,
+  getTransmissionAngle(10, theta1_radian)
 )
 
 points(x = theta1_degree, y = R_s_10, col='green')
@@ -77,14 +83,14 @@ points(x = theta1_degree, y = R_p_10, col='blue')
 
 R_s_50 = getRs(
   50, 
-  theta1_degree,
-  getTransmissionAngle(50, theta1_degree)
+  theta1_radian,
+  getTransmissionAngle(50, theta1_radian)
 )
 
 R_p_50 = getRp(
   50,
-  theta1_degree,
-  getTransmissionAngle(50, theta1_degree)
+  theta1_radian,
+  getTransmissionAngle(50, theta1_radian)
 )
 
 points(x = theta1_degree, y = R_s_50, col='orange')
